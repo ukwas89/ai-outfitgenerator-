@@ -12,7 +12,7 @@ const HowItWorks = () => {
             Back to Home
           </Button>
         </Link>
-        
+        <h2>🔥Bonus Tip: Copy these AI-generated outfit texts and paste them into ChatGPT to unlock stunning, hyper realistic AI powered extra image creations! 🚀✨</h2>
         <h1 className="text-4xl font-bold mb-8">How It Works</h1>
         
         <div className="prose prose-gray max-w-none">
