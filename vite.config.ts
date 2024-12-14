@@ -2,6 +2,25 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import { execSync } from 'child_process'
+import { writeFileSync } from 'fs'
+import { SitemapStream, streamToPromise } from 'sitemap'
+import { Readable } from 'stream'
+
+async function generateSitemap() {
+  const sitemap = new SitemapStream({ hostname: 'https://aioutfitgenerator.online' });
+
+  const links = [
+    { url: '/', changefreq: 'daily', priority: 1 },
+    { url: '/privacy', changefreq: 'monthly', priority: 0.8 },
+    { url: '/terms', changefreq: 'monthly', priority: 0.8 },
+    { url: '/how-it-works', changefreq: 'weekly', priority: 0.9 },
+    { url: '/contact', changefreq: 'monthly', priority: 0.8 },
+  ];
+
+  const stream = Readable.from(links).pipe(sitemap);
+  const data = await streamToPromise(stream);
+  writeFileSync('./public/sitemap.xml', data.toString());
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,8 +28,8 @@ export default defineConfig({
     react(),
     {
       name: 'generate-sitemap',
-      closeBundle: () => {
-        execSync('node -r esbuild-register ./src/utils/generateSitemap.ts');
+      buildStart: async () => {
+        await generateSitemap();
       },
     },
   ],
