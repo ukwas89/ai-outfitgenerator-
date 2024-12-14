@@ -157,6 +157,8 @@ const Index = () => {
               </div>
               <div className="outfit-card">
                 <h3 className="text-xl font-semibold mb-4">4. Generate Outfits</h3>
+                                <h2>🔥Bonus Tip: Copy these AI-generated outfit texts and paste them into ChatGPT to unlock stunning, hyper realistic AI powered extra image creations! 🚀✨</h2>
+
                 <p>
                   Click the generate button and watch as our advanced AI creates multiple outfit combinations using machine learning and fashion expertise. Each suggestion comes with detailed descriptions and matching visuals to help you visualize the complete look.
                 </p>
